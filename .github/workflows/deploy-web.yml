@@ -70,8 +70,11 @@ jobs:
       - name: Install web dependencies
         run: cd web && npm ci
 
-      - name: Install Python package
-        run: cd python && pip install -e .
+      - name: Bundle algorithm metadata for Python
+        run: python scripts/bundle-python-data.py
+
+      - name: Install Python package (with dev deps for validation)
+        run: cd python && pip install -e ".[dev]"
 
       # -----------------------------------------------------------------------
       # PRE-COMPUTATION PIPELINE
