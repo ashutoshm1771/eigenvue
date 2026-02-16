@@ -52,6 +52,7 @@ import argparse
 import json
 import math
 import os
+import platform
 import subprocess
 import sys
 import tempfile
@@ -143,12 +144,15 @@ def run_ts_generator(algorithm_id: str, inputs: dict[str, Any]) -> list[dict]:
     try:
         # Execute with Node.js using the project's TypeScript configuration.
         # We use npx tsx to handle TypeScript imports directly.
+        # On Windows, npx is a .cmd wrapper — subprocess needs shell=True
+        # to resolve it. On Linux/macOS, direct execution is preferred.
         result = subprocess.run(
             ["npx", "tsx", runner_path],
             capture_output=True,
-            text=True,
             cwd=str(PROJECT_ROOT / "web"),
             timeout=30,
+            shell=(platform.system() == "Windows"),
+            encoding="utf-8",
         )
 
         if result.returncode != 0:
@@ -619,6 +623,12 @@ def sync_algorithm(
 
 def main() -> int:
     """Entry point for the sync-generators script."""
+    # On Windows, the console defaults to cp1252 which can't encode Unicode
+    # symbols like ∞. Force UTF-8 output so error messages print correctly.
+    if platform.system() == "Windows":
+        sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
+        sys.stderr.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
+
     parser = argparse.ArgumentParser(
         description="Compare TypeScript and Python generators for parity.",
     )

@@ -127,6 +127,23 @@ export type StepBuilderFn = (input: StepInput) => Step;
  * 4. The generator MUST terminate (no infinite loops).
  * 5. State objects in steps MUST be independent snapshots (see StepInput.state docs).
  *
+ * CROSS-LANGUAGE PARITY PITFALLS:
+ * Every TypeScript generator has a mirrored Python generator. The two MUST
+ * produce identical step sequences. Watch out for these common mismatches:
+ *
+ * - Sets: JS `[...set]` preserves insertion order; Python `sorted(set)` is
+ *   alphabetical. Always use `Array.from(set).sort()` to match Python.
+ *
+ * - Floats in strings: JS `String(4)` = "4"; Python `str(4.0)` = "4.0".
+ *   In the Python mirror, use the `:g` format specifier (e.g., `f"{val:g}"`)
+ *   to strip trailing ".0" and match JavaScript's output.
+ *
+ * - Sparse arrays: JS `.map()` visits `undefined` slots; Python skips `None`.
+ *   Filter undefined values before mapping: `.filter(v => v !== undefined)`.
+ *
+ * - State snapshots: Always deep-copy mutable state (spread arrays, clone
+ *   objects). Both languages must snapshot the same values at the same moment.
+ *
  * @typeParam TInputs - The shape of the algorithm's input parameters.
  * @param inputs - The algorithm's input parameters (e.g., { array, target }).
  * @param step   - The step builder function. Call this to create each step.
