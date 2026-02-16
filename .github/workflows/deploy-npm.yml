@@ -149,7 +149,7 @@ jobs:
       # is configured. The NPM_TOKEN secret must be an Automation token.
       # -----------------------------------------------------------------------
       - name: Publish to npm
-        run: cd node && npm publish --access public
+        run: cd node && npm publish --access public --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
