@@ -231,7 +231,7 @@ def generate(inputs: dict[str, Any]) -> list[Step]:
                                 params={
                                     "text": "Shortest path: "
                                     + " \u2192 ".join(path)
-                                    + f" (cost: {u_dist})",
+                                    + f" (cost: {u_dist:g})",
                                     "messageType": "success",
                                 },
                             ),
