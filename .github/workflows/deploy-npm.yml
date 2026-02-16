@@ -162,5 +162,5 @@ jobs:
           sleep 15  # Give npm registry time to propagate.
           TAG_VERSION="${GITHUB_REF_NAME#v}"
           npm install "eigenvue@${TAG_VERSION}" --prefix /tmp/verify
+          cd /tmp/verify
           node -e "const ev = require('eigenvue'); console.log('Installed:', typeof ev.list === 'function' ? 'OK' : 'FAIL')"
-        working-directory: /tmp
