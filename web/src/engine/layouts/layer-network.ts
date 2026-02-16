@@ -37,8 +37,6 @@ const WEIGHT_LINE_MIN = 0.5;
 const WEIGHT_LINE_MAX = 3.5;
 const GRADIENT_LINE_MIN = 1;
 const GRADIENT_LINE_MAX = 5;
-const MIN_LAYER_SPACING = 120;
-
 const THEME = {
   inputNode:        "#1e40af",
   inputStroke:      "#3b82f6",

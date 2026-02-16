@@ -4,7 +4,7 @@
  * Tests parsing, serialization, and round-trip behavior of URL state.
  */
 
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect } from "vitest";
 import { parseUrlState, getShareUrl } from "../url-state";
 
 // ─── Schema for binary search ────────────────────────────────────────────────

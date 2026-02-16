@@ -241,12 +241,12 @@ def generate(inputs: dict[str, Any]) -> list[Step]:
 
         for entry_n in neighbors:
             v: str = entry_n["to"]
-            weight: float = entry_n["weight"]
+            edge_weight: float = entry_n["weight"]
 
             if v in visited:
                 continue
 
-            new_dist = dist[u] + weight
+            new_dist = dist[u] + edge_weight
             improved = new_dist < dist[v]
 
             visited_actions3: list[VisualAction] = [
@@ -273,9 +273,9 @@ def generate(inputs: dict[str, Any]) -> list[Step]:
                     id="relax_edge",
                     title=f"Relax Edge {u} \u2192 {v}",
                     explanation=(
-                        f"Checking edge {u} \u2192 {v} (weight = {weight}). "
+                        f"Checking edge {u} \u2192 {v} (weight = {edge_weight}). "
                         f"Current dist[{v}] = {dist_display[v]}. "
-                        f"New candidate: dist[{u}] + {weight} = {u_dist} + {weight} = {new_dist}. "
+                        f"New candidate: dist[{u}] + {edge_weight} = {u_dist} + {edge_weight} = {new_dist}. "
                         + (
                             f"{new_dist} < {dist_display[v]}, so update dist[{v}] = {new_dist}."
                             if improved
@@ -288,7 +288,12 @@ def generate(inputs: dict[str, Any]) -> list[Step]:
                         "visited": sorted(visited),
                         "distances": dict(dist_display),
                         "current": u,
-                        "relaxing": {"from": u, "to": v, "weight": weight, "newDist": new_dist},
+                        "relaxing": {
+                            "from": u,
+                            "to": v,
+                            "weight": edge_weight,
+                            "newDist": new_dist,
+                        },
                     },
                     visual_actions=tuple(
                         [

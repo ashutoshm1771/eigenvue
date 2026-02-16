@@ -26,6 +26,8 @@ Usage::
 
 from __future__ import annotations
 
+import builtins
+
 __version__ = "1.0.1"
 
 from typing import Any
@@ -34,7 +36,7 @@ from eigenvue.catalog import AlgorithmInfo, list_algorithms
 from eigenvue.runner import run_generator
 
 
-def list(category: str | None = None) -> list[AlgorithmInfo]:
+def list(category: str | None = None) -> builtins.list[AlgorithmInfo]:
     """List available algorithms with their metadata.
 
     Parameters
@@ -119,7 +121,7 @@ def show(
 def steps(
     algorithm_id: str,
     inputs: dict[str, Any] | None = None,
-) -> list[dict[str, Any]]:
+) -> builtins.list[dict[str, Any]]:
     """Generate and return the step sequence for an algorithm.
 
     Each step is a dictionary matching the Eigenvue step format (camelCase

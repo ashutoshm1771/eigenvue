@@ -30,7 +30,6 @@ const DIAGRAM_HEIGHT_RATIO = 0.6;
 
 /** Horizontal layout zones (as fractions of usable width). */
 const ZONE_INPUTS = 0.15;
-const ZONE_WEIGHTS = 0.30;
 const ZONE_SUMMATION = 0.50;
 const ZONE_ACTIVATION = 0.70;
 const ZONE_OUTPUT = 0.88;
@@ -40,7 +39,6 @@ const SUMMATION_CIRCLE_RADIUS = 28;
 const OUTPUT_CIRCLE_RADIUS = 22;
 const ACTIVATION_BOX_WIDTH = 70;
 const ACTIVATION_BOX_HEIGHT = 40;
-const CONNECTION_LINE_WIDTH = 2;
 const FONT_SIZE_VALUE = 12;
 const FONT_SIZE_LABEL = 11;
 const FONT_SIZE_WEIGHT = 10;

@@ -12,8 +12,7 @@
 
 import { describe, it, expect } from "vitest";
 import { runGenerator, GeneratorError, createGenerator } from "../index";
-import type { StepBuilderFn, StepInput } from "../types";
-import type { Step } from "@/shared/types/step";
+import type { StepInput } from "../types";
 
 // ─── Helper: create a minimal valid step input ──────────────────────────────
 
@@ -364,7 +363,7 @@ describe("GeneratorRunner — Error Wrapping", () => {
   it("preserves GeneratorError cause chain", () => {
     const gen = createGenerator<Record<string, unknown>>({
       id: "cause-gen",
-      *generate(_inputs, step) {
+      *generate(_inputs, _step) {
         throw new TypeError("type error");
       },
     });

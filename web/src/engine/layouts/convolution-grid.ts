@@ -18,7 +18,6 @@ import type {
   PrimitiveScene,
   RenderPrimitive,
   ElementPrimitive,
-  ConnectionPrimitive,
   AnnotationPrimitive,
 } from "../types";
 
@@ -32,7 +31,6 @@ const CELL_GAP = 2;
 const GRID_SPACING = 60;
 const LABEL_OFFSET = 25;
 const FONT_SIZE_VALUE = 11;
-const FONT_SIZE_LABEL = 12;
 const FONT_SIZE_GRID_TITLE = 13;
 
 const THEME = {

@@ -86,8 +86,6 @@ describe("CodePanel — Line Highlighting", () => {
       />,
     );
 
-    // Lines with active highlight should have border-classical class.
-    const highlightedLines = container.querySelectorAll(".border-classical");
     // At minimum, the highlighted code lines should be present (border-classical appears
     // on both the line div border and the line number). Filter to line divs with bg highlight.
     const bgHighlighted = container.querySelectorAll('[class*="bg-classical"]');
