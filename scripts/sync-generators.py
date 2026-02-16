@@ -80,10 +80,10 @@ import {{ runGenerator }} from '{generator_runner_path}';
 import generator from '{generator_path}';
 
 const inputs = {inputs_json};
-const steps = runGenerator(generator, inputs);
+const result = runGenerator(generator, inputs);
 
-// Output to stdout as JSON for Python to parse.
-process.stdout.write(JSON.stringify(steps, null, 0));
+// Output only the steps array (not the full StepSequence metadata).
+process.stdout.write(JSON.stringify(result.steps, null, 0));
 """
 
 
